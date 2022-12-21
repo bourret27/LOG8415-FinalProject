@@ -8,4 +8,4 @@ COPY infrastructure_builder.py /
 
 COPY .env /
 
-CMD [ "python", "./main.py" ]
+ENTRYPOINT [ "python", "./main.py" ]
