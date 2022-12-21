@@ -23,6 +23,7 @@ if __name__ == '__main__':
     else:
         print('Custom!')
 
-    """ec2_client = boto3.client('ec2')
+    ec2_client = boto3.client('ec2')
     ec2_resource = boto3.resource('ec2')
-    security_group = infrastructure_builder.create_security_group(ec2_client, ec2_resource, 'custom_group')"""
+    security_group = infrastructure_builder.create_security_group(ec2_client, ec2_resource, 'custom_group')
+    standalone = infrastructure_builder.create_instances(ec2_resource, 't2.micro', 1, 'ami-0b5eea76982371e91','vockey', security_group.group_name)

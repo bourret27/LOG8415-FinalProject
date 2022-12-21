@@ -15,13 +15,19 @@ def create_security_group(client, resource, security_group_name):
     GroupId=security_group_id,
     IpPermissions=[
         {'IpProtocol': 'tcp',
-            'FromPort': 80,
-            'ToPort': 80,
-            'IpRanges': [{'CidrIp': '0.0.0.0/0'}]},
-        {'IpProtocol': 'tcp',
             'FromPort': 22,
             'ToPort': 22,
             'IpRanges': [{'CidrIp': '0.0.0.0/0'}]}
         ])
         
     return resource.SecurityGroup(response_security_group['GroupId'])
+
+def create_instances(resource, instance_type, count, image_id, key_name, security_group_name):
+        return resource.create_instances(
+            InstanceType=instance_type,
+            MinCount=count,
+            MaxCount=count,
+            ImageId=image_id,
+            KeyName=key_name,
+            SecurityGroups=[security_group_name]
+        )
