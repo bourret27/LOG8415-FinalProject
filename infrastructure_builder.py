@@ -1,10 +1,10 @@
 import boto3
 
-def create_security_group(client, security_group_name, description):
+def create_security_group_standalone(client):
     
     security_group = client.create_security_group(
-        GroupName=security_group_name,
-        Description=description
+        GroupName='standalone_sg',
+        Description='For standalone server.'
     )
 
         
@@ -13,19 +13,19 @@ def create_security_group(client, security_group_name, description):
         IpProtocol='tcp',
         FromPort=22,
         ToPort=22,
-        GroupName=security_group_name
+        GroupName='standalone_sg'
    
     )
         
     return security_group
 
-def create_instances(client, instance_type, count, image_id, key, user_data, security_group_id):
+def create_instances(client, instance_type, count, user_data, security_group_id):
         return client.run_instances(
             InstanceType=instance_type,
             MinCount=count,
             MaxCount=count,
-            ImageId=image_id,
-            KeyName=key,
+            ImageId='ami-0574da719dca65348',
+            KeyName='vockey',
             UserData=user_data,
             SecurityGroupIds=[security_group_id]
         )
