@@ -8,4 +8,6 @@ COPY infrastructure_builder.py /
 
 COPY .env /
 
+COPY setup_scripts/standalone.sh /
+
 ENTRYPOINT [ "python", "./main.py" ]
