@@ -16,19 +16,29 @@ dpkg -i mysql-cluster-community-management-server_7.6.6-1ubuntu18.04_amd64.deb
 mkdir /var/lib/mysql-cluster
 echo "
 [ndbd default]
-NoOfReplicas=1	
+NoOfReplicas=3	
 
 [ndb_mgmd]
-hostname=ip-172-31-19-176.ec2.internal 
+hostname=ip-172-31-2-2.ec2.internal 
 datadir=/var/lib/mysql-cluster 	
 
 [ndbd]
-hostname=ip-172-31-20-228.ec2.internal 
+hostname=ip-172-31-2-3.ec2.internal 
 NodeId=2			
-datadir=/usr/local/mysql/data	
+datadir=/usr/local/mysql/data
+
+[ndbd]
+hostname=ip-172-31-2-4.ec2.internal 
+NodeId=3			
+datadir=/usr/local/mysql/data
+
+[ndbd]
+hostname=ip-172-31-2-5.ec2.internal 
+NodeId=4			
+datadir=/usr/local/mysql/data
 
 [mysqld]
-hostname=ip-172-31-19-176.ec2.internal
+hostname=ip-172-31-2-2.ec2.internal
 " > /var/lib/mysql-cluster/config.ini
 
 # Add the instructions for systemd to start, stop and restart ndb_mgmd
@@ -78,7 +88,7 @@ echo "
 ndbcluster                   
 
 [mysql_cluster]
-ndb-connectstring=ip-172-31-19-176.ec2.internal 
+ndb-connectstring=ip-172-31-2-2.ec2.internal 
 " > /etc/mysql/my.cnf
 
 # Restart MySQL Server

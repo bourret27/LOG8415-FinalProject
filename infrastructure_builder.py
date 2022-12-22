@@ -32,7 +32,7 @@ def create_security_group_cluster(client):
         
     return security_group
 
-def create_instances(client, instance_type, user_data, security_group_id, ip_address):
+def create_instances(client, instance_type, user_data, security_group_id, ip_address, instance_name):
         return client.run_instances(
             InstanceType=instance_type,
             MinCount=1,
@@ -42,6 +42,17 @@ def create_instances(client, instance_type, user_data, security_group_id, ip_add
             UserData=user_data,
             SecurityGroupIds=[security_group_id],
             SubnetId='subnet-01b5009d8894a05cc', # Subnet: 172.31.0.0/20 - diffrent ID depending on the user
-            PrivateIpAddress=ip_address
+            PrivateIpAddress=ip_address,
+            TagSpecifications=[
+                {
+                    'ResourceType': 'instance',
+                    'Tags': [
+                        {
+                            'Key': 'Name',
+                            'Value': instance_name
+                        },
+                    ]
+                },
+            ]
         )
 

@@ -1,2 +1,2 @@
-# LOG8415-FinalProject
+# LOG8415E - Final Project
 Final project for LOG8415

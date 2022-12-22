@@ -15,7 +15,7 @@ dpkg -i mysql-cluster-community-data-node_7.6.6-1ubuntu18.04_amd64.deb
 # Specify the master node
 echo "
 [mysql_cluster]
-ndb-connectstring=ip-172-31-19-176.ec2.internal
+ndb-connectstring=ip-172-31-2-2.ec2.internal
 " > /etc/my.cnf
 
 # Creating data directory 
