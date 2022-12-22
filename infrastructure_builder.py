@@ -24,19 +24,19 @@ def create_security_group_cluster(client):
 
     client.authorize_security_group_ingress(
         CidrIp='0.0.0.0/0',
-        IpProtocol='tcp',
-        FromPort=22,
-        ToPort=22,
+        IpProtocol='-1',
+        FromPort=0,
+        ToPort=65535,
         GroupName='cluster_sg'
     )
         
     return security_group
 
-def create_instances(client, instance_type, count, user_data, security_group_id, ip_address):
+def create_instances(client, instance_type, user_data, security_group_id, ip_address):
         return client.run_instances(
             InstanceType=instance_type,
-            MinCount=count,
-            MaxCount=count,
+            MinCount=1,
+            MaxCount=1,
             ImageId='ami-0574da719dca65348',
             KeyName='vockey',
             UserData=user_data,

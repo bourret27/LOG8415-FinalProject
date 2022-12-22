@@ -2,18 +2,38 @@ import boto3
 import infrastructure_builder
 import argparse
 
-def benchmark_cluster(client):
-    return {}
+def create_cluster_infrastructure(client):
+    print('Creating infrastructure...')
+    
+    security_group = infrastructure_builder.create_security_group_cluster(client)
 
+    user_data_master = open('master.sh', 'r').read()
+    master = infrastructure_builder.create_instances(client,'t2.micro', user_data_master, security_group['GroupId'], '172.31.2.2')
+
+    user_data_slave = open('slave.sh', 'r').read()
+    slaves = []
+    machine_address = 3
+    for i in range(3):
+        ip_address = '172.31.2.' + str(machine_address)
+        slave = infrastructure_builder.create_instances(client,'t2.micro', user_data_slave, security_group['GroupId'], ip_address)
+        slaves.append(slave)
+        machine_address += 1
+
+
+def benchmark_cluster(client):
+    create_cluster_infrastructure(client)
+
+    
 def create_standalone_infrastructure(client):
     print('Creating infrastructure...')
     
     security_group = infrastructure_builder.create_security_group_standalone(client)
     
     user_data = open('standalone.sh', 'r').read()
-    standalone_server = infrastructure_builder.create_instances(client,'t2.micro', 1, user_data, security_group['GroupId'], '172.31.2.1')
+    standalone_server = infrastructure_builder.create_instances(client,'t2.micro', user_data, security_group['GroupId'], '172.31.2.1')
     
     return standalone_server
+
 
 def benchmark_standalone(client):
     standalone_server = create_standalone_infrastructure(client)
@@ -48,6 +68,6 @@ if __name__ == '__main__':
         print('Custom!')
 
     ec2_client = boto3.client('ec2')
-    benchmark_standalone(ec2_client)
-
+    #benchmark_standalone(ec2_client)
+    benchmark_cluster(ec2_client)
     

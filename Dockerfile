@@ -10,4 +10,8 @@ COPY .env /
 
 COPY setup_scripts/standalone.sh /
 
+COPY setup_scripts/master.sh /
+
+COPY setup_scripts/slave.sh /
+
 ENTRYPOINT [ "python", "./main.py" ]
