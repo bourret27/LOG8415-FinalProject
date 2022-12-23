@@ -2,6 +2,7 @@ from sshtunnel import SSHTunnelForwarder
 import pymysql
 import pandas as pd
 import argparse
+import random
 
 cluster_hosts = ['172.31.2.2', '172.31.2.3', '172.31.2.4', '172.31.2.5']
 str_query = 'SELECT * FROM actor;'
@@ -37,9 +38,16 @@ def run_direct_hit():
     tunnel = create_ssh_tunnel()
     connection = create_connection_to_db(cluster_hosts[0])
     data = pd.read_sql_query(str_query, connection)
+    connection.close()
     print(data)
 
-    return {}
+def run_random_hit():
+    host = cluster_hosts[random.randint(1, 3)]
+    tunnel = create_ssh_tunnel()
+    connection = create_connection_to_db(host)
+    data = pd.read_sql_query(str_query, connection)
+    connection.close()
+    print(data)
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Proxy application')
@@ -52,3 +60,5 @@ if __name__ == "__main__":
 
     if args['p'] == 'direct':
         run_direct_hit()
+    elif args['p'] == 'random':
+        run_random_hit()
