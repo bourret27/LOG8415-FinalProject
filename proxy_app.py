@@ -7,7 +7,7 @@ if __name__ == "__main__":
         ssh_username="ubuntu",
         ssh_key="labsuser.pem",
         local_bind_address=('127.0.0.1', 3306),
-        remote_bind_addres=('127.0.0.1', 3306)
+        remote_bind_address=('127.0.0.1', 3306)
     )
     tunnel.start()
     print("Hello World!")
