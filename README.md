@@ -6,7 +6,7 @@ In order to run this solution you must do the following:
 1. Install [Docker Engine](https://docs.docker.com/get-docker/) 
 2. Fill in the `.env` file with your AWS CLI credentials 
 3. In the `infrastructure_builder.py` file, replace the `SUBNET_ID` with your subnet id. This can be found in the AWS console on the "VPC" page, under the "Subnets" option.
-4. Copy your `.pem` acces key in the repository. 
+4. Copy your `.pem` access key in the repository. 
 
 ## Benchmarking 
 
