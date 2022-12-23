@@ -2,7 +2,7 @@ from sshtunnel import SSHTunnelForwarder
 import pymysql
 import pandas as pd
 
-if __name__ == "__main__":
+def create_ssh_tunnel():
     tunnel = SSHTunnelForwarder(
         ('172.31.2.2', 22),
         ssh_username="ubuntu",
@@ -12,9 +12,13 @@ if __name__ == "__main__":
     )
     tunnel.start()
 
+    return tunnel
+
+if __name__ == "__main__":
+    tunnel = create_ssh_tunnel()
     str_query = 'SELECT * FROM actor;'
     conn = pymysql.connect(
-        host='127.0.0.1',
+        host='172.31.2.3',
         user='root',
         password='root',
         db="sakila",
