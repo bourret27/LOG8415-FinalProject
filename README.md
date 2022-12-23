@@ -20,7 +20,7 @@ Make sure to run the commands as the `root` user. In order to do so, run `sudo -
 
 The results will be under `/ubuntu/home/results.txt`.
 
-### Benchmarking the SQL Cluster
+### Benchmarking the MySQL Cluster
 
 First off, as root user on the first slave (named "slave_1"), you must copy the copy the commands from the `setup_scripts/slave.sh` file. Repeat this step for the other slaves ("slave_2" and "slave_3").
 
