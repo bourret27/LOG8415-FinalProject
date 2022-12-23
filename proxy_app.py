@@ -4,7 +4,7 @@ import pandas as pd
 
 def create_ssh_tunnel():
     tunnel = SSHTunnelForwarder(
-        ('172.31.2.2', 22),
+        ('172.31.2.3', 22),
         ssh_username="ubuntu",
         ssh_pkey="labsuser.pem",
         local_bind_address=('127.0.0.1', 3306),
