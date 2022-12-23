@@ -1,5 +1,7 @@
 import boto3
 
+SUBNET_ID = 'subnet-01b5009d8894a05cc'
+
 def create_security_group_standalone(client):
     security_group = client.create_security_group(
         GroupName='standalone_sg',
@@ -40,7 +42,7 @@ def create_instances(client, instance_type, security_group_id, ip_address, insta
             ImageId='ami-0574da719dca65348',
             KeyName='vockey',
             SecurityGroupIds=[security_group_id],
-            SubnetId='subnet-01b5009d8894a05cc', # Subnet: 172.31.0.0/20 - diffrent ID depending on the user
+            SubnetId=SUBNET_ID, 
             PrivateIpAddress=ip_address,
             TagSpecifications=[
                 {
