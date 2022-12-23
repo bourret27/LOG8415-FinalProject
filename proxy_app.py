@@ -22,4 +22,5 @@ if __name__ == "__main__":
     )
 
     data = pd.read_sql_query(str_query, conn)
-    print("Hello World!")
+
+    print(data)
