@@ -43,7 +43,7 @@ def run_direct_hit():
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Proxy application')
-    parser.parser.add_argument('-p', required=True, choices=['direct', 'random', 'custom'])
+    parser.add_argument('-p', required=True, choices=['direct', 'random', 'custom'])
     args = vars(parser.parse_args())
     return args
 
