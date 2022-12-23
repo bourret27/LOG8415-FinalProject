@@ -109,4 +109,4 @@ mysql -u root -proot -e "SOURCE /home/ubuntu/sakila-db/sakila-data.sql;"
 # Writing results in /home/ubuntu/results.txt
 sysbench oltp_read_write --table-size=100000 --mysql-db=sakila --mysql-user=root --mysql-password=root prepare
 sysbench oltp_read_write --table-size=100000 --threads=6 --time=60 --max-requests=0 --mysql-db=sakila --mysql-user=root --mysql-password=root run > /home/ubuntu/results.txt
-sysbench oltp_read_write --mysql-db=sakila --mysql-user=root cleanup
+sysbench oltp_read_write --mysql-db=sakila --mysql-user=root --my-sql-password=root cleanup

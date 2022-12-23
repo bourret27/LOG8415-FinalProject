@@ -81,5 +81,5 @@ if __name__ == '__main__':
 
     ec2_client = boto3.client('ec2')
     benchmark_standalone(ec2_client)
-    benchmark_cluster(ec2_client)
+    #benchmark_cluster(ec2_client)
     
