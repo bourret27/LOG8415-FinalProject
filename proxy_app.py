@@ -74,7 +74,7 @@ def get_best_server():
         result = pythonping.ping(host, count=1, timeout=5)
 
         if not(result.packet_loss) and result.rtt_avg_ms < best_time:
-            print(host + ' - time: ' + str(result.rtt_avg_ms))
+            print(host + ' - time: ' + str(result.rtt_avg_ms) + ' ms')
             best_server = host
             best_time = result.rtt_avg_ms
     
