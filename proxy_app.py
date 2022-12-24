@@ -31,7 +31,7 @@ def create_ssh_tunnel():
     return tunnel
 
 def create_connection_to_db(hostname):
-    print('Querying at ' + hostname)
+    print('Querying at ' + hostname + '...')
 
     connection = pymysql.connect(
         host=hostname,
