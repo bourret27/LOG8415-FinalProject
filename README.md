@@ -1,6 +1,8 @@
 # LOG8415E - Final Project
 Final project for LOG8415
 
+Link to the Github repository: https://github.com/bourret27/LOG8415-FinalProject.git
+
 ## Prerequisites
 In order to run this solution you must do the following:  
 1. Install [Docker Engine](https://docs.docker.com/get-docker/) 
