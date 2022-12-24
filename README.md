@@ -22,13 +22,15 @@ The results will be under `/ubuntu/home/results.txt`.
 
 ### Benchmarking the MySQL Cluster
 
-First off, as root user on the first slave (named "slave_1"), you must copy the copy the commands from the `setup_scripts/slave.sh` file. Repeat this step for the other slaves ("slave_2" and "slave_3").
+First off, as root user on the master instance (named "master"), you must copy and run the commands on from the `setup_scripts/master.sh` file in order too set up the master node.
 
-On the master node (named "master"), as root user, copy the the commands from the `setup_scripts/master.sh` file. This will then run the benchmarking of the cluster node. The results will be under `/ubuntu/home/results.txt`.
+Next, on each of the slaves (named "slave_1", "slave_2" and "slave_3"), as root user, you must copy and run the commands found in `setup_scripts/slave.sh`. This will setup the slave nodes.
+
+Finally, back on the master node, you must copy and run the commands found `setup_scripts/benchmark_cluster.sh`, that will run the benchmarking. The results will be under `/ubuntu/home/results.txt` on the master node.
 
 ## Proxy
 
-Once the benchmarking is done, as root user once again on the proxy server (named "proxy"): 
+Once the benchmarking is done, as root user once again on the Proxy server (named "proxy"): 
 
 1. Copy the commands from the `setup_scripts/proxy.sh`.
 2. `cd LOG8415-FinalProject`
