@@ -1,3 +1,5 @@
+#Script used to install proxy application on Proxy instance.
+
 #!/bin/bash
 
 # Install Python, Pip and Git
