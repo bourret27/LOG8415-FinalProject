@@ -6,13 +6,15 @@ import boto3
 import infrastructure_builder
 
 def create_proxy(client):
+    print('Creating proxy...')
+
     security_group = infrastructure_builder.create_security_group(client, 'proxy_sg', 'For proxy.')
     proxy = infrastructure_builder.create_instances(client,'t2.large', security_group['GroupId'], '172.31.2.6', 'proxy')
 
     return proxy
 
 def create_cluster_infrastructure(client):
-    print('Creating infrastructure...')
+    print('Creating cluster infrastructure...')
     
     security_group = infrastructure_builder.create_security_group(client, 'cluster_sg', 'For SQL cluster.')
 
@@ -31,7 +33,7 @@ def create_cluster_infrastructure(client):
 
     
 def create_standalone_infrastructure(client):
-    print('Creating infrastructure...')
+    print('Creating standalone infrastructure...')
     
     security_group = infrastructure_builder.create_security_group_standalone(client)
     standalone_server = infrastructure_builder.create_instances(client,'t2.micro', security_group['GroupId'], '172.31.2.1', 'standalone')
@@ -42,7 +44,7 @@ def create_standalone_infrastructure(client):
 if __name__ == '__main__':
     ec2_client = boto3.client('ec2')
 
-    #create_standalone_infrastructure(ec2_client)
+    create_standalone_infrastructure(ec2_client)
     create_cluster_infrastructure(ec2_client)
-    #create_proxy(ec2_client)
+    create_proxy(ec2_client)
     
